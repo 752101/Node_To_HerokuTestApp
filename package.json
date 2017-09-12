@@ -18,7 +18,10 @@
   },
   "homepage": "https://github.com/752101/Node_To_HerokuTestApp#readme",
   "dependencies": {
-    "express": "^4.15.4"
+    "body-parser": "^1.18.1",
+    "express": "^4.15.4",
+    "pg-promise": "^6.5.2",
+    "request": "^2.81.0"
   },
   "devDependencies": {},
   "description": ""

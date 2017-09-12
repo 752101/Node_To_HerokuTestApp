@@ -1,9 +1,9 @@
 const express = require('express')
 const app = express()
 var path = require('path');
-//var bodyParser = require('body-parser');
-//var pgp = require('pg-promise')(/*options*/)
-//var connection = pgp('postgres://username:password@host:port/database')
+var bodyParser = require('body-parser');
+var pgp = require('pg-promise')(/*options*/)
+var connection = pgp('postgres://username:password@host:port/database')
 var request = require("request")
 
 app.use(express.static('public'))
@@ -14,16 +14,16 @@ app.use(express.static('public'))
 
 
 //Establish MySQL connection
-//connection.connect(function(err) {
-//   if (err) 
-//      throw err
-//   else {
-//       console.log('Connected to MySQL');
-//       // Start the app when connection is ready
-//       app.listen(3000);
-//       console.log('Server listening on port 3000');
-// }
-//});
+connection.connect(function(err) {
+   if (err) 
+      throw err
+   else {
+       console.log('Connected to MySQL');
+       // Start the app when connection is ready
+       app.listen(3000);
+       console.log('Server listening on port 3000');
+ }
+});
 //http://www.opentechguides.com/how-to/article/nodejs/124/express-mysql-json.html
 var url = "https://jsonplaceholder.typicode.com/albums"
 
@@ -36,22 +36,22 @@ console.log(error, response, body)
         console.log(body) // Print the json response
     }
 })
-//
-//var jsondata = request.body;
-//var values = [];
-//
-//for(var i=0; i< jsondata.length; i++)
-//  values.push([jsondata[i].name,jsondata[i].age]);
-//
-////Bulk insert using nested array [ [a,b],[c,d] ] will be flattened to (a,b),(c,d)
-//connection.query('INSERT INTO members (name, age) VALUES ?', [values], function(err,result) {
-//  if(err) {
-//     res.send('Error');
-//  }
-// else {
-//     res.send('Success');
-//  }
-//});
+
+var jsondata = request.body;
+var values = [];
+
+for(var i=0; i< jsondata.length; i++)
+  values.push([jsondata[i].userId,jsondata[i].id,jsondata[i].title]);
+
+//Bulk insert using nested array [ [a,b],[c,d] ] will be flattened to (a,b),(c,d)
+connection.query('INSERT INTO testTable (userID, ID, Title) VALUES ?', [values], function(err,result) {
+  if(err) {
+     res.send('Error');
+  }
+ else {
+     res.send('Success');
+  }
+});
 
 
 app.listen(process.env.PORT || 8080, () => console.log('All is right!'))
