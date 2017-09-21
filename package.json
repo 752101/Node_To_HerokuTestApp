@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "node server",
     "test": "tests/run-ci",
     "gulp": "./gulpfile.js",
     "build": "gulp",
