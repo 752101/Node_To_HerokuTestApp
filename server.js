@@ -19,7 +19,8 @@ if (app.get('env') === 'development') {
   require('dotenv').config();
 } else if (app.get('env') === 'production') {
   // Import the NewRelic Module.
-  require('newrelic');
+  ///// uncomment this on Production and comment below required////////require('newrelic');
+  require('dotenv').config();
 } else {
   console.log('Please set your NODE_ENV to either `development` or `production`');
 }
