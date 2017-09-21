@@ -10,7 +10,7 @@ const helmet = require('helmet');
 
 // Importing the express module under the `app` variable
 const app = express();
-var port=8081;
+var port= process.env.PORT || 8080;
 
 /* If the user is local development import the .env file, else do not load the
 .env file. Also if production is set start newrelic for monitoring*/
